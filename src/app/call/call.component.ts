@@ -55,6 +55,14 @@ export class CallComponent implements OnInit {
   removeCall() {
     this.callEnd.emit();
   }
+  holdCall() {
+    this.interaction.state = InteractionStates.OnHold;
+    setInteraction(this.interaction);
+  }
+  unholdCall() {
+    this.interaction.state = InteractionStates.Connected;
+    setInteraction(this.interaction);
+  }
 
   getInteractionStateAsString(state: InteractionStates) {
     return InteractionStates[state];
