@@ -50,6 +50,7 @@ export class CallComponent implements OnInit {
   endCall() {
     this.interaction.state = InteractionStates.Disconnected;
     setInteraction(this.interaction);
+    this.removeCall();
   }
 
   removeCall() {
