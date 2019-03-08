@@ -7,7 +7,7 @@ import { initializeComplete, InteractionStates, setAppHeight } from '@amc-techno
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewChecked {
-  title = 'SampleChannelApp';
+  title = 'Updated Channel App';
 
   calls: { id: string, number: string }[] = [];
   phoneNumbers = [

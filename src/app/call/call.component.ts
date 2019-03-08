@@ -11,7 +11,10 @@ import {
   InteractionDirectionTypes,
   ChannelTypes,
   InteractionStates,
-  RecordItem
+  RecordItem,
+  registerClickToDial,
+  registerScreenpop,
+  SearchRecords
 } from '@amc-technology/davinci-api';
 
 @Component({
@@ -25,11 +28,19 @@ export class CallComponent implements OnInit {
   @Output() callEnd = new EventEmitter();
   interaction: IInteraction;
 
-  constructor() { }
+  constructor() {
+    registerClickToDial(
+      (ph: string, rec: SearchRecords) => {
+        return Promise.resolve();
+      }
+    );
+  }
 
   ngOnInit() {
     const interactionDetails = new RecordItem('', '', '');
     interactionDetails.setPhone('phoneNumber', 'phoneNumber', this.number);
+
+
 
     this.interaction = {
       interactionId: this.id,
