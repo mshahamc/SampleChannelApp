@@ -29,16 +29,13 @@ export class CallComponent implements OnInit {
   interaction: IInteraction;
 
   constructor() {
-    registerClickToDial(
-      (ph: string, rec: SearchRecords) => {
-        return Promise.resolve();
-      }
-    );
+
   }
 
   ngOnInit() {
     const interactionDetails = new RecordItem('', '', '');
     interactionDetails.setPhone('phoneNumber', 'phoneNumber', this.number);
+
 
 
 
@@ -75,7 +72,6 @@ export class CallComponent implements OnInit {
     this.interaction.state = InteractionStates.Connected;
     setInteraction(this.interaction);
   }
-
   getInteractionStateAsString(state: InteractionStates) {
     return InteractionStates[state];
   }
