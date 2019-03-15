@@ -29,16 +29,11 @@ export class CallComponent implements OnInit {
   interaction: IInteraction;
 
   constructor() {
-
   }
 
   ngOnInit() {
     const interactionDetails = new RecordItem('', '', '');
     interactionDetails.setPhone('phoneNumber', 'phoneNumber', this.number);
-
-
-
-
     this.interaction = {
       interactionId: this.id,
       direction: InteractionDirectionTypes.Inbound,

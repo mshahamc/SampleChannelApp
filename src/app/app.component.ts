@@ -7,7 +7,7 @@ import { initializeComplete, InteractionStates, setAppHeight, SearchRecords, reg
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewChecked {
-  title = 'Updated Channel App';
+  title = 'SampleChannelApp';
 
   calls: { id: string, number: string }[] = [];
   phoneNumbers = [
@@ -20,12 +20,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     initializeComplete();
-    registerClickToDial(
-      (ph: string, rec: SearchRecords) => {
-        this.callSpecific(ph);
-        return Promise.resolve();
-      }
-    );
+    registerClickToDial(this.callSpecific);
   }
 
   ngAfterViewChecked() {
@@ -48,10 +43,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
   removeCall(id: string) {
     this.calls = this.calls.filter(call => call.id !== id);
   }
-  callSpecific(ph: string) {
+  async callSpecific(phone: string) {
     this.calls = [... this.calls, {
       id: `Call-${Math.random()}`,
-      number: ph
+      number: phone
     }];
   }
 }
