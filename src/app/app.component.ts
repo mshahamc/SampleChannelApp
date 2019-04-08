@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { initializeComplete, InteractionStates, setAppHeight, SearchRecords, registerClickToDial } from '@amc-technology/davinci-api';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { initializeComplete, InteractionStates, setAppHeight, SearchRecords, reg
 export class AppComponent implements OnInit, AfterViewChecked {
   title = 'SampleChannelApp';
 
-  calls: { id: string, number: string }[] = [];
+  calls: { id: string, number: string, state?: InteractionStates }[] = [];
   phoneNumbers = [
     '555-123-4567',
     '555-867-5309',
@@ -17,7 +18,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
     '555-999-9999',
   ];
   nextPhoneNumberIndex = 0;
-
+  constructor() {
+    this.callSpecific = this.callSpecific.bind(this);
+  }
   ngOnInit() {
     initializeComplete();
     registerClickToDial(this.callSpecific);
@@ -46,7 +49,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
   async callSpecific(phone: string) {
     this.calls = [... this.calls, {
       id: `Call-${Math.random()}`,
-      number: phone
+      number: phone,
+      state: InteractionStates.Connected
+
     }];
   }
 }
