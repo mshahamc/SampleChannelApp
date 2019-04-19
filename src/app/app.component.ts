@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { initializeComplete, InteractionStates, setAppHeight, SearchRecords, registerClickToDial } from '@amc-technology/davinci-api';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +50,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
       id: `Call-${Math.random()}`,
       number: phone,
       state: InteractionStates.Connected
-
     }];
   }
 }
